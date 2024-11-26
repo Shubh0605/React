@@ -1,5 +1,43 @@
-#heading{
-    color: red;
-    
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.logo{
+    width: 100px;
+}
 
+.nav-item-container > ul{
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-item-container > ul > li {
+    padding: 10px;
+    margin: 10px;
+}
+.search{
+    padding: 10px;
+}
+.res-card{
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin: 10px;
+}
+.res-container :hover{
+    border: 2px solid black;
+    cursor: pointer;;
+}
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.kajuimage{
+    height: 150px;
+    width: 200px;
+    
+}
+h3{
+    text-align: center;
 }
