@@ -5,7 +5,8 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./components/Error";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 
 //header
@@ -42,26 +43,35 @@ const AppLayout = () => {
   );
 };
 
-
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-  
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  }
-]);
+    children: [
+    {
+      path: "/",
+      element: <Body />,
+      errorElement: <Error/>
+      
+    },
+    {
+      path: "/about",
+      element: <About/>
+    },
+    {
+      path: "/contact",
+      element: <Contact />
+    }
+
+  ],
+  errorElement: <Error/>
+}
+ 
+])
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
 //root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
 //react element
 //  const heading = React.createElement("h1", { id: "heading" }, "Hello Namaste");
 //console.log(heading);

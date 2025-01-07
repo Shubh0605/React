@@ -15,16 +15,16 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=12.9352403&lng=77.624532&carousel=true&third_party_vendor=1");
-
-      if (!data.ok) {
-        throw new Error(`HTTP error! status: ${data.status}`);
-      }
-      
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+       // "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
       const json = await data.json();
-
-      // Updated path to restaurants data
-      const restaurants = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+      
+      const restaurantData = json?.data?.cards?.find(
+        card => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+      
+      const restaurants = restaurantData?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
       setListOfrestaurants(restaurants);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -80,11 +80,11 @@ const Body = () => {
           <>
             {isFiltered
               ? filteredRestaurants.map((restaurant) => (
-                <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
-              ))
+                  <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
+                ))
               : ListOfrestaurants?.map((restaurant) => (
-                <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
-              ))}
+                  <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
+                ))}
           </>
         )}
       </div>
