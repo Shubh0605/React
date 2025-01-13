@@ -1,6 +1,7 @@
 import Restaurantcard from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [ListOfrestaurants, setListOfrestaurants] = useState([]);
@@ -88,6 +89,7 @@ const Body = () => {
           </>
         )}
       </div>
+      <Link to="/restaurants/123">Test Restaurant 123</Link>
     </div>
   );
 };
