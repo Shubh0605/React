@@ -81,10 +81,10 @@ const Body = () => {
           <>
             {isFiltered
               ? filteredRestaurants.map((restaurant) => (
-                  <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
+                <Link key={restaurant?.info?.id} to = {"/restaurants/" + restaurant.info.id }><Restaurantcard  resData={restaurant} /></Link>
                 ))
               : ListOfrestaurants?.map((restaurant) => (
-                  <Restaurantcard key={restaurant?.info?.id} resData={restaurant} />
+                  <Link key={restaurant?.info?.id} to = {"/restaurants/" + restaurant.info.id }><Restaurantcard  resData={restaurant} /></Link>
                 ))}
           </>
         )}
